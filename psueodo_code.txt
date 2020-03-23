@@ -1,0 +1,80 @@
+
+Create API and identify which to use
+    3 selected:
+        Current weather data        Can use City or Zip -   https://openweathermap.org/current 
+        5 day / 3 hour forecast     Can Use City or Zip -   https://openweathermap.org/forecast5
+        UV Index                    This requires LAT/LON to get the result -   https://openweathermap.org/api/uvi
+
+        openweathermap also includes a reference to a weather image.
+ 
+    Layout
+        Could never find if Bootstrap included a reset css, so include it
+        Bootstrap for general layout. Investigate cards for the 5 day forecast
+
+    JS
+        We'll need JQuery
+        May need moment JS
+        All Bootstrap JS includes
+
+    Define variables
+        We'll need to store all relevant information in an object or array
+            Here's our location details opbject:
+            const locationDetails = {
+                geoLocation: {lon: 0.00, lat: 0.00},
+                currentWeather: {date: "", name: "", temp: 0.00, humidity: 0, uvIndex: 0, icon: ""},
+                day1Weather: {day1date: "", day1Temp: 0.00, day1Humidity: 0, day1Icon: ""},
+                day2Weather: {day2date: "", day2Temp: 0.00, day2Humidity: 0, day2Icon: ""},
+                day3Weather: {day3date: "", day3Temp: 0.00, day3Humidity: 0, day3Icon: "" },
+                day4Weather: {day4date: "", day4Temp: 0.00, day4Humidity: 0, day4Icon: "" },
+                day5Weather: {day5date: "", day5Temp: 0.00, day5Humidity: 0, day5Icon: ""},
+                };
+
+                We would then create new instances of this with a let or var "var KansasCity = Object.create(locationDetails);"
+
+            We can use an array to keep track of the 8 prior locations searched:
+                var locationsSearched = ["","","","","","","",""];
+                We can check to see if a location is in the array already, if so, we won't add it to the list, if it isnt we add it in
+                if list is full we shift array items to the right and add new location to top
+                When we tie this into our location list, can we make this list clickable?
+
+
+    Screen plot:
+        Header bar (not necessarily a bootstrap header) 100% across screen
+            May include an option for C/F displays in this header
+
+        Grid on the left hand side including: Probably 33% of screen
+            Input box for API 
+                Should we do a way to distinguish what user has entered
+            List of 8-10 prior searched locations
+        Grid on right hand side of screen 66% side, 50% height?
+            Current weather for user entered locations
+            This shows the following:
+                City name
+                Weather Type Icon
+                Temp
+                Humidity
+                Wind Speed
+                UV Index
+                    UV Index is colour coded to it's health ratinf
+                    <2 green, 3-6 Yellow, 7-9 Red, 10+ Purple
+        Grid on right of screen, 66% wide, 50% height?
+            5 day forecast for user entered location
+            These should include the following:
+                Date
+                Weather Type Icon
+                Temp
+                Humidity
+            Can probably use Bootstrap cards for this
+
+        
+    Nice shit:
+        Appropriately coloured backgrounds
+        Fancy effects around the various grid boxes, maybe a slight shadow
+        Option for C/F/K display
+        Include option for rouding of temp to whole number, very few people give a crap about the .xx
+
+    Maybe include a full page advert every 30 seconds just like the bastards at real weather sites seem to do... :)
+
+           
+
+

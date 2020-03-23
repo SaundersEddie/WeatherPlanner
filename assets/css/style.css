@@ -7,3 +7,21 @@ h1 {
     font-size: x-large;
     background-color: bisque;
 }
+
+/* Set our UV range */
+
+.uvLow {
+    background-color: green;
+}
+
+.uvMed {
+    background-color: yellow;
+}
+
+.uvHigh {
+    background-color: red;
+}
+
+.uvOMG {
+    background-color: purple;
+}
