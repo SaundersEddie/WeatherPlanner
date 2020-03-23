@@ -37,6 +37,7 @@ Create API and identify which to use
                 if list is full we shift array items to the right and add new location to top
                 When we tie this into our location list, can we make this list clickable?
 
+        After we pull data, we need a way to transfer that to a an object for display
 
     Screen plot:
         Header bar (not necessarily a bootstrap header) 100% across screen
@@ -55,8 +56,10 @@ Create API and identify which to use
                 Humidity
                 Wind Speed
                 UV Index
-                    UV Index is colour coded to it's health ratinf
+                    UV Index is colour coded to it's health rating
                     <2 green, 3-6 Yellow, 7-9 Red, 10+ Purple
+                    Use something like $('#uvIndex).value > xx <xx then add class uvLow, uvMed, uvHigh, uvOMG
+                    
         Grid on right of screen, 66% wide, 50% height?
             5 day forecast for user entered location
             These should include the following:

@@ -50,12 +50,10 @@ const locationDetails = {
   day5Icon: ""},
 };
 
-let KansasCity = Object.create(locationDetails);
 var locationsSearched = ["","","","","","","",""];
+var city1 = Object.create(locationDetails)
+console.log ("Our City1: ",city1);
 
-
-const myAPIKey = "f9c22785936f5fc5811e20fb8cb7e2fc";
-var weatherDataIndex = 0;
 // This returns 5 days in 3 hour intervals.
 var myCurrentCityURL = 'https://api.openweathermap.org/data/2.5/weather?q=Harlow&appid=f9c22785936f5fc5811e20fb8cb7e2fc'
 var myCityURL = "https://api.openweathermap.org/data/2.5/forecast?q=Harlow&appid=f9c22785936f5fc5811e20fb8cb7e2fc";
@@ -68,10 +66,11 @@ $.get(myCityURL, function (response) {
   // part of this resoponse is a list array of 40 items containing the dt_txt which we can use to get our 5 day forecast from
   // Every 8 array elements is 24 hours later
   for (var i = 0; i < 40; i += 8) {
-    console.log("API Response: ", response.list[i].dt_txt, response.list[i].main.temp, response.list[i].wind.speed, response.list[i].main.humidity);
-    console.log("CoOrds: ", response.city.coord.lat, response.city.coord.lon);
-    console.log(weatherDataIndex);
-    weatherDataIndex++;
+    console.log( response.list[i].main.temp);
+    city1.currentWeather.temp = response.list[i].main.temp;
+    //console.log("CoOrds: ", response.city.coord.lat, response.city.coord.lon);
+    console.log ("City1 Temp: ",city1.currentWeather.temp);
+    //weatherDataIndex++;
   }
 });
 
@@ -87,11 +86,20 @@ $.get(myUVIndexURL, function (response) {
 $.get(myCurrentCityURL, function (response) {
 
  // console.log("Respose: ", response);
-  console.log("currentTemp: ", response.main.temp);
-  console.log("currentHumidity: ", response.main.humidity);
-  console.log("currentWindSpeed: ", response.wind.speed);
-  console.log("CurrentConditions", response.weather[0].description);
-  console.log("currentIcon: ", response.weather[0].icon);
-  console.log("CurrentLat: ", response.coord.lat);
-  console.log("CurrentLon: ", response.coord.lon);
+  // console.log("currentTemp: ", response.main.temp);
+  // console.log("currentHumidity: ", response.main.humidity);
+  // console.log("currentWindSpeed: ", response.wind.speed);
+  // console.log("CurrentConditions", response.weather[0].description);
+  // console.log("currentIcon: ", response.weather[0].icon);
+  // console.log("CurrentLat: ", response.coord.lat);
+  // console.log("CurrentLon: ", response.coord.lon);
 })
+
+{/* <div class="cityName">City Name</div>
+<div class="temp">temp</div>
+<div class="humdity"></div>
+<div class="windSpeed"></div>
+<div class="weatherIcon"></div> */}
+console.log ("City1 Temp: ",city1.currentWeather.temp);
+$("#temp").text(city1.currentWeather.temp);
+console.log (city1.temp);
