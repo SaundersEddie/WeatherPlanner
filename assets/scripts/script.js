@@ -10,55 +10,7 @@ var priorCities = [];
 var priorCitiesCount = 6;
 const myAPIKey = "f9c22785936f5fc5811e20fb8cb7e2fc";
 
-const locationDetails = {
-  geoLocation: { lon: 0.00, lat: 0.00 },
-  currentWeather: {
-    date: "",
-    name: "",
-    temp: 0.00,
-    humidity: 0,
-    uvIndex: 0,
-    icon: ""
-  },
-
-  day1Weather: {
-    day1date: "",
-    day1Temp: 0.00,
-    day1Humidity: 0,
-    day1Icon: ""
-  },
-
-  day2Weather: {
-    day2date: "",
-    day2Temp: 0.00,
-    day2Humidity: 0,
-    day2Icon: ""
-  },
-
-  day3Weather: {
-    day3date: "",
-    day3Temp: 0.00,
-    day3Humidity: 0,
-    day3Icon: ""
-  },
-
-  day4Weather: {
-    day4date: "",
-    day4Temp: 0.00,
-    day4Humidity: 0,
-    day4Icon: ""
-  },
-
-  day5Weather: {
-    day5date: "",
-    day5Temp: 0.00,
-    day5Humidity: 0,
-    day5Icon: ""
-  },
-};
-
 var locationsSearched = ["", "", "", "", "", "", "", ""];
-var city1 = Object.create(locationDetails)
 
 // Set an event for our search button
 // This will take the data searched for and send it to the searchCity, which in turn will populate
@@ -71,9 +23,18 @@ $("#searchBtn").click(function (event) {
   getCurrentConditions(myCity);
 });
 
+
+// Populate our screen info:
+$('#cityName').text(city1.currentWeather.name);
+$('#uvIndex').text(city1.uvIndex);
+checkUVRange();
 // Our functions go here
 
-// Get current forecast and if successful our LAt/Long for UVI
+function checkUVRange () {
+  currentUV = parseInt($('#uvIndex').val());
+  console.log(currentUV);
+}
+// Get current forecast and if successful our Lat/Long for UVI
 function getCurrentConditions(myCity) {
   var currentConditionsURL = "https://api.openweathermap.org/data/2.5/weather?q=" + myCity + "&appid=" + myAPIKey;
   $.ajax({
@@ -82,31 +43,35 @@ function getCurrentConditions(myCity) {
   })
     // We have a nested call here to collect the UV after we've collected the lat/lon
     .then(function (response) {
-      console.log("My Current City: ", response);
-      console.log(response.coord.lon);
-      city1.geoLocation.lon = response.coord.lon;
-      city1.geoLocation.lat = response.coord.lat;
-      getCurrentUVIndex(city1.geoLocation.lat, city1.geoLocation.lon)
+      console.log(response);
+      $('#cityName').text(response.name);
+      $('#temp').text(response.main.temp);
+      $('#humidity').text(response.main.humidity);
+      $('#windSpeed').text(response.wind.speed);
+      $('#weatherIcon').text(response.weather[0].icon);
+      // Pass our coords to get the UV
+      getCurrentUVIndex(response.coord.lat, response.coord.lon)
+   
     });
 }
 
 // Get 5 day forecast
 function get5Day(myCity) {
   var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + myCity + "&appid=" + myAPIKey;
-  console.log("API Call URL - 5 Day: ", fiveDayURL);
-  console.log("5 Day Forecast: ", myCity);
+  //console.log("API Call URL - 5 Day: ", fiveDayURL);
+  //console.log("5 Day Forecast: ", myCity);
   $.ajax({
     url: fiveDayURL,
     method: "GET"
   })
     .then(function (response) {
       for (var i = 0; i < 40; i += 8) {
-        console.log("My City 5 Day: ", response);
+       // console.log("My City 5 Day: ", response);
       }
     });
 }
 
-// Get current UV Index
+// Get current UV Index, this is called from within current forecast to get our UV index.
 function getCurrentUVIndex(myLat, myLon) {
   var UVIndexURL = "https://api.openweathermap.org/data/2.5/uvi?" + "appid=" + myAPIKey + "&lat=" + myLat + "&lon=" + myLon;
   $.ajax({
@@ -114,6 +79,9 @@ function getCurrentUVIndex(myLat, myLon) {
     method: "GET"
   })
     .then(function (response) {
-      console.log("My UV Index: ", response);
+      //city1.uvIndex = response.value;
+
+      //console.log("My UV Index: ", city1.uvIndex);
+      $('#uvIndex').text(response.value);
     })
 }
