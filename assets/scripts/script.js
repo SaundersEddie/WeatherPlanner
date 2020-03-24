@@ -4,13 +4,11 @@
 // saunders.eddie@outlook.com
 // 21st March 2020
 
-// Initial creations 21st MArch 2020 EXS
+// Initial creations 21st March 2020 EXS
 
 var priorCities = [];
 var priorCitiesCount = 6;
 const myAPIKey = "f9c22785936f5fc5811e20fb8cb7e2fc";
-
-
 
 const locationDetails = {
   geoLocation: { lon: 0.00, lat: 0.00 },
@@ -69,41 +67,30 @@ var city1 = Object.create(locationDetails)
 $("#searchBtn").click(function (event) {
   myCity = $("#userSearch").val();
   event.preventDefault();
-  //get5Day($("#userSearch").val());
+  get5Day($("#userSearch").val());
   getCurrentConditions(myCity);
-  console.log(city1);
-  console.log (city1.geoLocation.lon);
-  console.log (city1.geoLocation.lat);
-  // getCurrentUVIndex(city1.geoLocation.lon, city1.geoLocation.lat);
-
-
 });
-
-
-
-
 
 // Our functions go here
 
 // Get current forecast and if successful our LAt/Long for UVI
 function getCurrentConditions(myCity) {
   var currentConditionsURL = "https://api.openweathermap.org/data/2.5/weather?q=" + myCity + "&appid=" + myAPIKey;
-  // console.log ("API Call URL - Testing: ",currentConditionsURL);
-  console.log("Current Weather Conditions: ", myCity);
   $.ajax({
     url: currentConditionsURL,
     method: "GET"
   })
+    // We have a nested call here to collect the UV after we've collected the lat/lon
     .then(function (response) {
       console.log("My Current City: ", response);
-      console.log (response.coord.lon);
+      console.log(response.coord.lon);
       city1.geoLocation.lon = response.coord.lon;
       city1.geoLocation.lat = response.coord.lat;
+      getCurrentUVIndex(city1.geoLocation.lat, city1.geoLocation.lon)
     });
 }
 
 // Get 5 day forecast
-
 function get5Day(myCity) {
   var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + myCity + "&appid=" + myAPIKey;
   console.log("API Call URL - 5 Day: ", fiveDayURL);
@@ -121,59 +108,12 @@ function get5Day(myCity) {
 
 // Get current UV Index
 function getCurrentUVIndex(myLat, myLon) {
-  console.log("Getting UV Index");
-  // const myUVIndexURL = "https://api.openweathermap.org/data/2.5/uvi?appid=f9c22785936f5fc5811e20fb8cb7e2fc&lat=51.7766&lon=-0.1116";
-
-  var UVIndexURL = "https://api.openweathermap.org/data/2.5/uvi?" + "appid=" + myAPIKey + "&Lat=" + myLat + "&Lon=" + myLon;
-  console.log (UVIndexURL);
+  var UVIndexURL = "https://api.openweathermap.org/data/2.5/uvi?" + "appid=" + myAPIKey + "&lat=" + myLat + "&lon=" + myLon;
   $.ajax({
     url: UVIndexURL,
     method: "GET"
   })
     .then(function (response) {
-      // console.log ("My UV Index: ", response);
+      console.log("My UV Index: ", response);
     })
 }
-
-
-
-// This returns 5 days in 3 hour intervals.
-
-
-
-// Get our primary city data for the 5 day forecast
-// city5DayTemp. city5DayHumidity, city5DayIcon,city5DayTemp, city5DayDate
-// The data returned is only for 5 days, with 3 hour increments
-// $.ajax({
-//       url: myCityURL,
-//       method: "GET"
-//     })
-//   .then(function(response) 
-//   {
-//     for (var i = 0; i < 40; i += 8) 
-//     {
-//           console.log("My City 5 Day: ", response);
-//     }
-//   });
-
-  // This call we get our current city, this also pulls our data for the Lat/Lon for the current
-  // UV index.
-  // $.ajax ({
-  //   url: myCurrentCityURL,
-  //   method: "GET"
-  // })
-  // .then(function(response)
-  // {
-  //  // console.log ("My Current City: ", response);
-  // });
-
-  // Here we pull our UV Index
-  // $.ajax({
-  //   url: myUVIndexURL,
-  //   method: "GET"
-  // })
-  //   .then(function(response) {
-  //    // console.log ("My UV Index: ", response);
-  // })
-
-
