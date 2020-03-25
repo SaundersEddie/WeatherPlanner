@@ -1,16 +1,20 @@
 // Script for UNC Bootcamp Homework for Weather App
-// Weather App 5 day forecast CSS 
+// Weather App 5 day forecast
 // Eddie Saunders
 // saunders.eddie@outlook.com
 // 21st March 2020
 
 // Initial creations 21st March 2020 EXS
+// 25th March Updates EXS
+// Created URL for icon display
+// Created kelvin temp conversion to F
+// Created list for locations visited
 
 var priorCities = [];
 var priorCitiesCount = 6;
 const myAPIKey = "f9c22785936f5fc5811e20fb8cb7e2fc";
-const weatherIconURL= "http://openweathermap.org/img/wn/";
-const weatherIconURLEnd ="@2x.png";
+const weatherIconURL= "<img src='http://openweathermap.org/img/wn/";
+const weatherIconURLEnd ="@2x.png' alt='Weather Icon'>";
 
 var locationsSearched = ["", "", "", "", "", "", "", ""];
 
@@ -56,7 +60,7 @@ function getCurrentConditions(myCity) {
       $('#temp').text(myTemp);
       $('#humidity').text(response.main.humidity);
       $('#windSpeed').text(response.wind.speed);
-      $('#weatherIcon').text(myWeatherIcon);
+      $('#weatherIcon').html(myWeatherIcon);
       // Pass our coords to get the UV
       getCurrentUVIndex(response.coord.lat, response.coord.lon)
    
@@ -81,7 +85,7 @@ function get5Day(myCity) {
         myTempID = "#day"+myForecastDate+"Temp";
         myHumidID = "#day"+myForecastDate+"Humid";
         $(myDateID).text(response.list[i].dt_txt);
-        $(myIconID).text(myWeatherIcon);
+        $(myIconID).html(myWeatherIcon);
         $(myTempID).text(myTemp);
         $(myHumidID).text(response.list[i].main.humidity);
          myForecastDate++; 
@@ -106,6 +110,9 @@ function getCurrentUVIndex(myLat, myLon) {
     })
 }
 
+// Take our supplied kelvin temp and convert to farenheit, if time allows we may do a selector for 
+// a centigrade option
+// Version 1 EXS 25th MArch 2020
 function tempConversion (myKTemp) {
   convertedTemp = ((myKTemp-273.15)*1.8)+32;
   convertedTemp = convertedTemp.toFixed(2)
@@ -113,6 +120,9 @@ function tempConversion (myKTemp) {
   return convertedTemp;
 }
 
+// Update our list, things we need to improve are checks for letter case right now, the search will see
+// London and LONDON as two different enteries
+// Versuin 1 EXS 25th March 2020
 function updateSearchedList() {
   console.log ("Update our searched list");
   console.log (locationsSearched);
