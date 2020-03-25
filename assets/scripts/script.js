@@ -67,7 +67,21 @@ function get5Day(myCity) {
     method: "GET"
   })
     .then(function (response) {
+      console.log (response);
+      var myForecastDate = 1;
       for (var i = 0; i < 40; i += 8) {
+        console.log(myForecastDate);
+        console.log ("Humid: ", response.list[i].main.humidity);
+        myDateID = "#day"+myForecastDate+"Date";
+        myIconID = "#day"+myForecastDate+"Icon";
+        myTempID = "#day"+myForecastDate+"Temp";
+        myHumidID = "#day"+myForecastDate+"Humid";
+        $(myDateID).text(response.list[i].dt_txt);
+        $(myIconID).text(response.list[i].weather[0].icon);
+        $(myTempID).text(response.list[i].main.temp);
+        $(myHumidID).text(response.list[i].main.humidity);
+         myForecastDate++; 
+     
        // console.log("My City 5 Day: ", response);
       }
     });
