@@ -17,16 +17,18 @@ var locationsSearched = ["", "", "", "", "", "", "", ""];
 // our data
 
 $("#searchBtn").click(function (event) {
+  // One of the search button events is to move the searched for place to the top of the list
+  // and shift everything else down one list. We could probably just do a prepend, however it might
+  // be a better idea to review the list and if the searched for city is already listed, not readd it.
   myCity = $("#userSearch").val();
+  locationsSearched.unshift(myCity);
+  console.log (locationsSearched);
   event.preventDefault();
   get5Day($("#userSearch").val());
   getCurrentConditions(myCity);
 });
 
 
-// Populate our screen info:
-$('#cityName').text(city1.currentWeather.name);
-$('#uvIndex').text(city1.uvIndex);
 checkUVRange();
 // Our functions go here
 
