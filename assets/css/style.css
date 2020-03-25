@@ -2,7 +2,9 @@
 Eddie Saunders
 saunders.eddie@outlook.com
 21st March 2020 */
-
+body {
+    background-image: url("../../assets/images/skyBackground.jpeg");
+}
 h1 {
     font-size: x-large;
     background-color: bisque;
@@ -27,11 +29,29 @@ h1 {
 }
 
 #searchArea {
-    border-style: solid;
-    background-color: rosybrown;
+    border-style: solid; /* Temporary just to visualize */
+    border-radius: 15%;
+ 
 }
 
 .currentForecast {
     border-top-style: dotted;
-    background-color: royalblue;
+ 
+  
+}
+
+#pageTitle {
+    font-size: 48pt;
+    font-style: bold;
+    /* background-color: darkslategray; */
+    color:lightgray;
+    text-align: center;
+    text-shadow: darkblue 1px 1px;
+}
+
+.day {
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px;
+    border-color: black;
 }

@@ -13,6 +13,7 @@ const myAPIKey = "f9c22785936f5fc5811e20fb8cb7e2fc";
 const weatherIconURL = "<img src='http://openweathermap.org/img/wn/";
 const weatherIconURLEnd = "@2x.png' alt='Weather Icon'>";
 
+var myMoment = moment();
 var locationsSearched = ["", "", "", "", "", "", "", ""];
 var useCentigrade = false; // If we decide to implement centigrade this will be the toggle, default is false
 
@@ -81,7 +82,12 @@ function get5Day(myCity) {
         myIconID = "#day" + myForecastDate + "Icon";
         myTempID = "#day" + myForecastDate + "Temp";
         myHumidID = "#day" + myForecastDate + "Humid";
-        $(myDateID).text(response.list[i].dt_txt);
+        var myPulledDate = response.list[i].dt_txt.substring(0,10);
+        myMomentDate = moment(myPulledDate).format("MM/DD/YYYY");
+        console.log(myMomentDate);
+        console.log (myPulledDate);
+        $(myDateID).text(myMomentDate)
+        //$(myDateID).text(response.list[i].dt_txt);
         $(myIconID).html(myWeatherIcon);
         $(myTempID).text(myTemp);
         $(myHumidID).text(response.list[i].main.humidity);
