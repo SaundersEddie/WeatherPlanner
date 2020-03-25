@@ -10,13 +10,15 @@
 // Created kelvin temp conversion to F
 // Created list for locations visited
 
-var priorCities = [];
-var priorCitiesCount = 6;
+
 const myAPIKey = "f9c22785936f5fc5811e20fb8cb7e2fc";
-const weatherIconURL= "<img src='http://openweathermap.org/img/wn/";
-const weatherIconURLEnd ="@2x.png' alt='Weather Icon'>";
+const weatherIconURL = "<img src='http://openweathermap.org/img/wn/";
+const weatherIconURLEnd = "@2x.png' alt='Weather Icon'>";
 
 var locationsSearched = ["", "", "", "", "", "", "", ""];
+var useCentigrade = true;
+//var priorCities = []; // Likely no longer required
+// var priorCitiesCount = 6; // likely no longer required
 
 // Set an event for our search button
 // This will take the data searched for and send it to the searchCity, which in turn will populate
@@ -40,7 +42,7 @@ $("#searchBtn").click(function (event) {
 checkUVRange();
 // Our functions go here
 
-function checkUVRange () {
+function checkUVRange() {
   currentUV = parseInt($('#uvIndex').val());
   console.log(currentUV);
 }
@@ -55,7 +57,7 @@ function getCurrentConditions(myCity) {
     .then(function (response) {
       //console.log(response);
       myTemp = tempConversion(response.main.temp);
-      myWeatherIcon = weatherIconURL+response.weather[0].icon+weatherIconURLEnd
+      myWeatherIcon = weatherIconURL + response.weather[0].icon + weatherIconURLEnd
       $('#cityName').text(response.name);
       $('#temp').text(myTemp);
       $('#humidity').text(response.main.humidity);
@@ -63,7 +65,7 @@ function getCurrentConditions(myCity) {
       $('#weatherIcon').html(myWeatherIcon);
       // Pass our coords to get the UV
       getCurrentUVIndex(response.coord.lat, response.coord.lon)
-   
+
     });
 }
 
@@ -75,22 +77,23 @@ function get5Day(myCity) {
     method: "GET"
   })
     .then(function (response) {
-      console.log (response);
+      console.log(response);
       var myForecastDate = 1;
       for (var i = 0; i < 40; i += 8) {
-        myWeatherIcon = weatherIconURL+response.list[i].weather[0].icon+weatherIconURLEnd
-        myTemp=tempConversion(response.list[i].main.temp)
-        myDateID = "#day"+myForecastDate+"Date";
-        myIconID = "#day"+myForecastDate+"Icon";
-        myTempID = "#day"+myForecastDate+"Temp";
-        myHumidID = "#day"+myForecastDate+"Humid";
+        myWeatherIcon = weatherIconURL + response.list[i].weather[0].icon + weatherIconURLEnd
+        myTemp = tempConversion(response.list[i].main.temp)
+        console.log ("My Temp: ", myTemp);
+        myDateID = "#day" + myForecastDate + "Date";
+        myIconID = "#day" + myForecastDate + "Icon";
+        myTempID = "#day" + myForecastDate + "Temp";
+        myHumidID = "#day" + myForecastDate + "Humid";
         $(myDateID).text(response.list[i].dt_txt);
         $(myIconID).html(myWeatherIcon);
         $(myTempID).text(myTemp);
         $(myHumidID).text(response.list[i].main.humidity);
-         myForecastDate++; 
-     
-       // console.log("My City 5 Day: ", response);
+        myForecastDate++;
+
+        // console.log("My City 5 Day: ", response);
       }
     });
 }
@@ -113,10 +116,15 @@ function getCurrentUVIndex(myLat, myLon) {
 // Take our supplied kelvin temp and convert to farenheit, if time allows we may do a selector for 
 // a centigrade option
 // Version 1 EXS 25th MArch 2020
-function tempConversion (myKTemp) {
-  convertedTemp = ((myKTemp-273.15)*1.8)+32;
-  convertedTemp = convertedTemp.toFixed(2)
-  console.log ("My Converted Temp: ",convertedTemp);
+function tempConversion(myKTemp) {
+  convertedFTemp = ((myKTemp - 273.15) * 1.8) + 32;
+  convertedCTemp = (myKTemp - 273.15);
+  // Here we would put in a check to see if C || F was selected and set convertedTemp to that
+  if (useCentigrade === true) {
+    convertedTemp = convertedCTemp.toFixed(2)
+  } else { convertedTemp = convertedFTemp.toFixed(2) };
+
+  console.log("My Converted Temp: ", convertedTemp);
   return convertedTemp;
 }
 
@@ -124,14 +132,12 @@ function tempConversion (myKTemp) {
 // London and LONDON as two different enteries
 // Versuin 1 EXS 25th March 2020
 function updateSearchedList() {
-  console.log ("Update our searched list");
-  console.log (locationsSearched);
-  for (var i=0; i<8; i++) {
-    myPlace = "#place"+parseInt((i)+1);
-    console.log (myPlace);
+  console.log("Update our searched list");
+  console.log(locationsSearched);
+  for (var i = 0; i < 8; i++) {
+    myPlace = "#place" + parseInt((i) + 1);
+    console.log(myPlace);
     $(myPlace).text(locationsSearched[i]);
   }
 
 }
-
-
