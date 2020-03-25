@@ -3,22 +3,18 @@
 // Eddie Saunders
 // saunders.eddie@outlook.com
 // 21st March 2020
-
 // Initial creations 21st March 2020 EXS
 // 25th March Updates EXS
 // Created URL for icon display
 // Created kelvin temp conversion to F
 // Created list for locations visited
 
-
 const myAPIKey = "f9c22785936f5fc5811e20fb8cb7e2fc";
 const weatherIconURL = "<img src='http://openweathermap.org/img/wn/";
 const weatherIconURLEnd = "@2x.png' alt='Weather Icon'>";
 
 var locationsSearched = ["", "", "", "", "", "", "", ""];
-var useCentigrade = true;
-//var priorCities = []; // Likely no longer required
-// var priorCitiesCount = 6; // likely no longer required
+var useCentigrade = false; // If we decide to implement centigrade this will be the toggle, default is false
 
 // Set an event for our search button
 // This will take the data searched for and send it to the searchCity, which in turn will populate
@@ -33,13 +29,12 @@ $("#searchBtn").click(function (event) {
     locationsSearched.unshift(myCity);
   }
   event.preventDefault();
-  // Check to see if the search item is already in the locationsSearched Array
   get5Day($("#userSearch").val());
   getCurrentConditions(myCity);
   updateSearchedList();
 });
-
 checkUVRange();
+
 // Our functions go here
 
 function checkUVRange() {
@@ -68,7 +63,6 @@ function getCurrentConditions(myCity) {
 
     });
 }
-
 // Get 5 day forecast
 function get5Day(myCity) {
   var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + myCity + "&appid=" + myAPIKey;
@@ -82,7 +76,7 @@ function get5Day(myCity) {
       for (var i = 0; i < 40; i += 8) {
         myWeatherIcon = weatherIconURL + response.list[i].weather[0].icon + weatherIconURLEnd
         myTemp = tempConversion(response.list[i].main.temp)
-        console.log ("My Temp: ", myTemp);
+        console.log("My Temp: ", myTemp);
         myDateID = "#day" + myForecastDate + "Date";
         myIconID = "#day" + myForecastDate + "Icon";
         myTempID = "#day" + myForecastDate + "Temp";
@@ -92,12 +86,9 @@ function get5Day(myCity) {
         $(myTempID).text(myTemp);
         $(myHumidID).text(response.list[i].main.humidity);
         myForecastDate++;
-
-        // console.log("My City 5 Day: ", response);
       }
     });
 }
-
 // Get current UV Index, this is called from within current forecast to get our UV index.
 function getCurrentUVIndex(myLat, myLon) {
   var UVIndexURL = "https://api.openweathermap.org/data/2.5/uvi?" + "appid=" + myAPIKey + "&lat=" + myLat + "&lon=" + myLon;
@@ -112,7 +103,6 @@ function getCurrentUVIndex(myLat, myLon) {
       $('#uvIndex').text(response.value);
     })
 }
-
 // Take our supplied kelvin temp and convert to farenheit, if time allows we may do a selector for 
 // a centigrade option
 // Version 1 EXS 25th MArch 2020
@@ -127,7 +117,6 @@ function tempConversion(myKTemp) {
   console.log("My Converted Temp: ", convertedTemp);
   return convertedTemp;
 }
-
 // Update our list, things we need to improve are checks for letter case right now, the search will see
 // London and LONDON as two different enteries
 // Versuin 1 EXS 25th March 2020
@@ -139,5 +128,4 @@ function updateSearchedList() {
     console.log(myPlace);
     $(myPlace).text(locationsSearched[i]);
   }
-
 }

@@ -25,3 +25,13 @@ h1 {
 .uvOMG {
     background-color: purple;
 }
+
+#searchArea {
+    border-style: solid;
+    background-color: rosybrown;
+}
+
+.currentForecast {
+    border-top-style: dotted;
+    background-color: royalblue;
+}
