@@ -23,11 +23,14 @@ $("#searchBtn").click(function (event) {
   // and shift everything else down one list. We could probably just do a prepend, however it might
   // be a better idea to review the list and if the searched for city is already listed, not readd it.
   myCity = $("#userSearch").val();
-  locationsSearched.unshift(myCity);
-  console.log (locationsSearched);
+  if (!locationsSearched.includes(myCity)) {
+    locationsSearched.unshift(myCity);
+  }
   event.preventDefault();
+  // Check to see if the search item is already in the locationsSearched Array
   get5Day($("#userSearch").val());
   getCurrentConditions(myCity);
+  updateSearchedList();
 });
 
 checkUVRange();
@@ -61,8 +64,6 @@ function getCurrentConditions(myCity) {
 }
 
 // Get 5 day forecast
-// const weatherIconURL= "http://openweathermap.org/img/wn/";
-// const weatherIconURLEnd ="@2x.png";
 function get5Day(myCity) {
   var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + myCity + "&appid=" + myAPIKey;
   $.ajax({
@@ -111,3 +112,16 @@ function tempConversion (myKTemp) {
   console.log ("My Converted Temp: ",convertedTemp);
   return convertedTemp;
 }
+
+function updateSearchedList() {
+  console.log ("Update our searched list");
+  console.log (locationsSearched);
+  for (var i=0; i<7; i++) {
+    myPlace = "#place"+parseInt((i)+1);
+    console.log (myPlace);
+    $(myPlace).text(locationsSearched[i]);
+  }
+
+}
+
+
