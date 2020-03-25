@@ -26,22 +26,26 @@ $("#searchBtn").click(function (event) {
   // and shift everything else down one list. We could probably just do a prepend, however it might
   // be a better idea to review the list and if the searched for city is already listed, not readd it.
   myCity = $("#userSearch").val();
-  if (!locationsSearched.includes(myCity)) {
-    locationsSearched.unshift(myCity);
-  }
+  if (!locationsSearched.includes(myCity)) {locationsSearched.unshift(myCity);}
   event.preventDefault();
   get5Day($("#userSearch").val());
   getCurrentConditions(myCity);
   updateSearchedList();
+  checkUVRange();
 });
-checkUVRange();
+
 
 // Our functions go here
 
 function checkUVRange() {
   currentUV = parseInt($('#uvIndex').val());
-  console.log(currentUV);
+  // lets do a simple UV range check
+  if (currentUV > 2) {
+    $('#uvIndex').addClass("uvMed");
+  }
 }
+
+
 // Get current forecast and if successful our Lat/Long for UVI
 function getCurrentConditions(myCity) {
   var currentConditionsURL = "https://api.openweathermap.org/data/2.5/weather?q=" + myCity + "&appid=" + myAPIKey;
