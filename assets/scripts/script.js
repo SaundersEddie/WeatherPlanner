@@ -9,6 +9,8 @@
 var priorCities = [];
 var priorCitiesCount = 6;
 const myAPIKey = "f9c22785936f5fc5811e20fb8cb7e2fc";
+const weatherIconURL= "http://openweathermap.org/img/wn/";
+const weatherIconURLEnd ="@2x.png";
 
 var locationsSearched = ["", "", "", "", "", "", "", ""];
 
@@ -28,7 +30,6 @@ $("#searchBtn").click(function (event) {
   getCurrentConditions(myCity);
 });
 
-
 checkUVRange();
 // Our functions go here
 
@@ -45,12 +46,14 @@ function getCurrentConditions(myCity) {
   })
     // We have a nested call here to collect the UV after we've collected the lat/lon
     .then(function (response) {
-      console.log(response);
+      //console.log(response);
+      myTemp = tempConversion(response.main.temp);
+      myWeatherIcon = weatherIconURL+response.weather[0].icon+weatherIconURLEnd
       $('#cityName').text(response.name);
-      $('#temp').text(response.main.temp);
+      $('#temp').text(myTemp);
       $('#humidity').text(response.main.humidity);
       $('#windSpeed').text(response.wind.speed);
-      $('#weatherIcon').text(response.weather[0].icon);
+      $('#weatherIcon').text(myWeatherIcon);
       // Pass our coords to get the UV
       getCurrentUVIndex(response.coord.lat, response.coord.lon)
    
@@ -58,10 +61,10 @@ function getCurrentConditions(myCity) {
 }
 
 // Get 5 day forecast
+// const weatherIconURL= "http://openweathermap.org/img/wn/";
+// const weatherIconURLEnd ="@2x.png";
 function get5Day(myCity) {
   var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + myCity + "&appid=" + myAPIKey;
-  //console.log("API Call URL - 5 Day: ", fiveDayURL);
-  //console.log("5 Day Forecast: ", myCity);
   $.ajax({
     url: fiveDayURL,
     method: "GET"
@@ -70,15 +73,15 @@ function get5Day(myCity) {
       console.log (response);
       var myForecastDate = 1;
       for (var i = 0; i < 40; i += 8) {
-        console.log(myForecastDate);
-        console.log ("Humid: ", response.list[i].main.humidity);
+        myWeatherIcon = weatherIconURL+response.list[i].weather[0].icon+weatherIconURLEnd
+        myTemp=tempConversion(response.list[i].main.temp)
         myDateID = "#day"+myForecastDate+"Date";
         myIconID = "#day"+myForecastDate+"Icon";
         myTempID = "#day"+myForecastDate+"Temp";
         myHumidID = "#day"+myForecastDate+"Humid";
         $(myDateID).text(response.list[i].dt_txt);
-        $(myIconID).text(response.list[i].weather[0].icon);
-        $(myTempID).text(response.list[i].main.temp);
+        $(myIconID).text(myWeatherIcon);
+        $(myTempID).text(myTemp);
         $(myHumidID).text(response.list[i].main.humidity);
          myForecastDate++; 
      
@@ -100,4 +103,11 @@ function getCurrentUVIndex(myLat, myLon) {
       //console.log("My UV Index: ", city1.uvIndex);
       $('#uvIndex').text(response.value);
     })
+}
+
+function tempConversion (myKTemp) {
+  convertedTemp = ((myKTemp-273.15)*1.8)+32;
+  convertedTemp = convertedTemp.toFixed(2)
+  console.log ("My Converted Temp: ",convertedTemp);
+  return convertedTemp;
 }
