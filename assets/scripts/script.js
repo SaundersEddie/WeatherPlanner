@@ -34,7 +34,6 @@ $("#searchBtn").click(function (event) {
   checkUVRange();
 });
 
-
 // Our functions go here
 
 function checkUVRange() {
@@ -44,7 +43,6 @@ function checkUVRange() {
     $('#uvIndex').addClass("uvMed");
   }
 }
-
 
 // Get current forecast and if successful our Lat/Long for UVI
 function getCurrentConditions(myCity) {
@@ -91,7 +89,6 @@ function get5Day(myCity) {
         console.log(myMomentDate);
         console.log (myPulledDate);
         $(myDateID).text(myMomentDate)
-        //$(myDateID).text(response.list[i].dt_txt);
         $(myIconID).html(myWeatherIcon);
         $(myTempID).text(myTemp);
         $(myHumidID).text(response.list[i].main.humidity);
@@ -107,9 +104,6 @@ function getCurrentUVIndex(myLat, myLon) {
     method: "GET"
   })
     .then(function (response) {
-      //city1.uvIndex = response.value;
-
-      //console.log("My UV Index: ", city1.uvIndex);
       $('#uvIndex').text(response.value);
     })
 }
@@ -128,8 +122,8 @@ function tempConversion(myKTemp) {
   return convertedTemp;
 }
 // Update our list, things we need to improve are checks for letter case right now, the search will see
-// London and LONDON as two different enteries
-// Versuin 1 EXS 25th March 2020
+// London and LONDON as two different entries
+// Version 1 EXS 25th March 2020
 function updateSearchedList() {
   console.log("Update our searched list");
   console.log(locationsSearched);

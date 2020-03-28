@@ -5,12 +5,11 @@ saunders.eddie@outlook.com
 body {
     background-image: url("../../assets/images/skyBackground.jpeg");
 }
-h1 {
+/* h1 {
     font-size: x-large;
     color: lightblue;
     text-shadow: darkblue 1px 1px;
-
-}
+} */
 
 /* Set our UV range */
 
@@ -30,15 +29,30 @@ h1 {
     background-color: purple;
 }
 
-#searchArea {
+.userInput {
     border-style: solid; /* Temporary just to visualize */
     border-radius: 15%;
- 
+    color: yellow;
 }
 
+#user-Input {
+}
+
+.search {
+    margin-left: 20px;
+    padding: 20px;
+    clear: both;
+    float: left;
+    width: 25%;
+    height 100%;
+    background-color: lightblue;
+    color: red;
+}
 .currentForecast {
-    border-top-style: dotted;
- 
+    width: 75%;
+    display: inline-block;
+    margin-right: 20px;
+    background-color: lightcyan;
   
 }
 
