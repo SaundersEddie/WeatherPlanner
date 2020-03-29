@@ -68,16 +68,24 @@ body {
 .day {
     border-style: solid;
     border-width: 1px;
+    text-align: justify;
     padding: 5px;
     margin: 10px;
     border-color: black;
-    background-color: lightblue;
+    //background-color: lightblue;
 }
 
-/* .search {
-    height: 500px;
-} */
+.search {
+    margin: 30px;
+    padding: 30px;
+}
 
-.row .col.offset-l0 {
-    margin-left: auto;
-  }
+.currentForecast {
+    margin: 30px;
+    padding: 30px;
+}
+
+.placesList {
+    font-size: larger;
+    color: darkblue;
+}

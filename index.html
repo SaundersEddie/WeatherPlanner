@@ -46,17 +46,18 @@
         <!-- We need a column here with a list for the prior users search -->
 
         <div class="row">
-            <div class="search col m3">
+            <div class="search col m3 offset-l1">
                 <section id="searchArea">
                     <div class="userInput">
                         <form id="user-input">
                             <label for="userInput">Enter City Name</label>
                             <input type="text" id="userSearch">
-                            <button class="btn-medium blue darken-3" id="searchBtn"><i
-                                    class="small material-icons">search</i></button><br>
+                            <button class="btn-small blue darken-3" id="searchBtn"><i
+                                    class="small material-icons">search</i></button>
                             <!-- I of search for icon-->
                             <!-- placeholder buttons, we'll likely use a table to create this-->
-                            <ul>
+                            <br><br>
+                            <ul class="placesList">
                                 <li id="place1"></li>
                                 <li id="place2"></li>
                                 <li id="place3"></li>
@@ -74,9 +75,9 @@
 
 
             <!-- <div class="currentForecast col m8 offset-m4"> -->
-                <div class="currentForecast col m8">
+                <div class="currentForecast col m6">
                 <section id="mainDisplay">
-                    <h1>Current Conditions</h1>
+                    <h2>Current Conditions</h2>
                     <hr><br>
                     <div id="cityName">
                         <h3>CityName</h3>
@@ -97,7 +98,7 @@
         <!-- These will likely be cards, this is just for test data -->
         <article id="fiveDay">
             <div class="row">
-                <div class="day day1 col s12 m6 l2 ">
+                <div class="day day1 col s12 m6 l2 offset-l1">
                     <div id="day1Date">Day 1 Date</div>
                     <div id="day1Icon">Day 1 Icon</div>
                     <div id="day1Temp">Day 1 Temp</div>
