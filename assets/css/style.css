@@ -73,3 +73,11 @@ body {
     border-color: black;
     background-color: lightblue;
 }
+
+/* .search {
+    height: 500px;
+} */
+
+.row .col.offset-l0 {
+    margin-left: auto;
+  }
