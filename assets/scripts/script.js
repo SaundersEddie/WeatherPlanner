@@ -17,6 +17,9 @@ var myMoment = moment();
 var locationsSearched = ["", "", "", "", "", "", "", ""];
 var useCentigrade = false; // If we decide to implement centigrade this will be the toggle, default is false
 
+// Initalization
+initialization();
+
 // Set an event for our search button
 // This will take the data searched for and send it to the searchCity, which in turn will populate
 // our data
@@ -26,7 +29,7 @@ $("#searchBtn").click(function (event) {
   // and shift everything else down one list. We could probably just do a prepend, however it might
   // be a better idea to review the list and if the searched for city is already listed, not readd it.
   myCity = $("#userSearch").val();
-  if (!locationsSearched.includes(myCity)) {locationsSearched.unshift(myCity);}
+  if (!locationsSearched.includes(myCity)) { locationsSearched.unshift(myCity); }
   event.preventDefault();
   get5Day($("#userSearch").val());
   getCurrentConditions(myCity);
@@ -56,11 +59,12 @@ function getCurrentConditions(myCity) {
       //console.log(response);
       myTemp = tempConversion(response.main.temp);
       myWeatherIcon = weatherIconURL + response.weather[0].icon + weatherIconURLEnd
-      $('#cityName').text(response.name);
+      $('#cityName').html("<h2>" + response.name + "</h2>");
+      $('#cityName').append(myWeatherIcon);
       $('#temp').text(myTemp);
       $('#humidity').text(response.main.humidity);
       $('#windSpeed').text(response.wind.speed);
-      $('#weatherIcon').html(myWeatherIcon);
+
       // Pass our coords to get the UV
       getCurrentUVIndex(response.coord.lat, response.coord.lon)
 
@@ -84,10 +88,10 @@ function get5Day(myCity) {
         myIconID = "#day" + myForecastDate + "Icon";
         myTempID = "#day" + myForecastDate + "Temp";
         myHumidID = "#day" + myForecastDate + "Humid";
-        var myPulledDate = response.list[i].dt_txt.substring(0,10);
+        var myPulledDate = response.list[i].dt_txt.substring(0, 10);
         myMomentDate = moment(myPulledDate).format("MM/DD/YYYY");
         console.log(myMomentDate);
-        console.log (myPulledDate);
+        console.log(myPulledDate);
         $(myDateID).text(myMomentDate)
         $(myIconID).html(myWeatherIcon);
         $(myTempID).text(myTemp);
@@ -132,4 +136,14 @@ function updateSearchedList() {
     console.log(myPlace);
     $(myPlace).text(locationsSearched[i]);
   }
+}
+
+// Initial Data Load
+function initialization() {
+  // Get our first city:
+  // get5Day($("#userSearch").val());
+  get5Day("London");
+  getCurrentConditions("London");
+  updateSearchedList();
+  checkUVRange();
 }

@@ -54,10 +54,7 @@ body {
 /* Current Conditions Area */
 
 .currentForecast {
-    /* width: 100%;
-    margin: 30px;
-    padding: 30px; */
-    display: inline-block;
+    /* display: inline-block; */
     margin-right: 20px;
     background-color: lightcyan;
 }
