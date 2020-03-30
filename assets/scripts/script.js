@@ -59,8 +59,8 @@ function getCurrentConditions(myCity) {
       //console.log(response);
       myTemp = tempConversion(response.main.temp);
       myWeatherIcon = weatherIconURL + response.weather[0].icon + weatherIconURLEnd
-      $('#cityName').html("<h2>" + response.name + "</h2>");
-      $('#cityName').append(myWeatherIcon);
+      $('#cityName').html("<p>" + response.name + "</p>");
+      $('#weatherIcon').html(myWeatherIcon);
       $('#temp').text(myTemp);
       $('#humidity').text(response.main.humidity);
       $('#windSpeed').text(response.wind.speed);
@@ -118,6 +118,7 @@ function tempConversion(myKTemp) {
   convertedFTemp = ((myKTemp - 273.15) * 1.8) + 32;
   convertedCTemp = (myKTemp - 273.15);
   // Here we would put in a check to see if C || F was selected and set convertedTemp to that
+  // This is currently not in use, but maybe included in future.
   if (useCentigrade === true) {
     convertedTemp = convertedCTemp.toFixed(2)
   } else { convertedTemp = convertedFTemp.toFixed(2) };
@@ -140,8 +141,6 @@ function updateSearchedList() {
 
 // Initial Data Load
 function initialization() {
-  // Get our first city:
-  // get5Day($("#userSearch").val());
   get5Day("London");
   getCurrentConditions("London");
   updateSearchedList();

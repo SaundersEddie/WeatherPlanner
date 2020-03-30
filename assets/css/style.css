@@ -59,6 +59,9 @@ body {
     background-color: lightcyan;
 }
 
+#cityName p {
+    font-size: 48px;
+}
 
 /* Set our UV range */
 
@@ -87,9 +90,11 @@ body {
     padding: 5px;
     margin: 10px;
     border-color: black;
+    background-color: lightyellow;
 }
 
 .fiveDay {
+    width: 10%;
     padding: 20px;
 }
 
