@@ -82,12 +82,7 @@ body {
 }
 
 
-
-
-
 /* Our 5 day forecast area */
-
-
 .day {
     border-style: solid;
     border-width: 1px;
@@ -100,3 +95,5 @@ body {
 .fiveDay {
     padding: 20px;
 }
+
+/*Media Query for resolution > 700 */
