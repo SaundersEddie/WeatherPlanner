@@ -2,14 +2,66 @@
 Eddie Saunders
 saunders.eddie@outlook.com
 21st March 2020 */
+
+/* 30th March 2020 Make this mobiloe first - EXS */
+
+/* ID is a #, class is a . */
+
 body {
     background-image: url("../../assets/images/skyBackground.jpeg");
 }
-/* h1 {
-    font-size: x-large;
-    color: lightblue;
+
+/* Our header area */
+
+#pageTitle {
+    font-size: 48pt;
+    font-style: bold;
+    text-align: center;
+    color:lightgray;
     text-shadow: darkblue 1px 1px;
-} */
+}
+
+/* User Input Area */
+
+.search {
+    margin-left: 30px;
+    padding: 30px;
+    clear: both;
+    float: left;
+    width: 25%;
+    height 100%;
+    color: black;
+    background-color: lightblue;
+}
+
+#user-input h4 {
+    color: black;
+}
+
+.userInput {
+    border-style: solid; /* Temporary just to visualize */
+    border-radius: 15%;
+    color: yellow;
+}
+
+.placesList {
+    font-size: larger;
+    color: darkblue;
+}
+
+
+
+/* Current Conditions Area */
+
+.currentForecast {
+    /* width: 100%;
+    margin: 30px;
+    padding: 30px; */
+    display: inline-block;
+    margin-right: 20px;
+    background-color: lightcyan;
+}
+
 
 /* Set our UV range */
 
@@ -29,41 +81,12 @@ body {
     background-color: purple;
 }
 
-.userInput {
-    border-style: solid; /* Temporary just to visualize */
-    border-radius: 15%;
-    color: yellow;
-}
-
-#user-Input {
-}
-
-.search {
-    margin-left: 20px;
-    padding: 20px;
-    clear: both;
-    float: left;
-    width: 25%;
-    height 100%;
-    background-color: lightblue;
-}
 
 
-.currentForecast {
-    width: 75%;
-    display: inline-block;
-    margin-right: 20px;
-    background-color: lightcyan;
-}
 
-#pageTitle {
-    font-size: 48pt;
-    font-style: bold;
-    /* background-color: darkslategray; */
-    color:lightgray;
-    text-align: center;
-    text-shadow: darkblue 1px 1px;
-}
+
+/* Our 5 day forecast area */
+
 
 .day {
     border-style: solid;
@@ -72,22 +95,6 @@ body {
     padding: 5px;
     margin: 10px;
     border-color: black;
-    //background-color: lightblue;
-}
-
-.search {
-    margin: 30px;
-    padding: 30px;
-}
-
-.currentForecast {
-    margin: 30px;
-    padding: 30px;
-}
-
-.placesList {
-    font-size: larger;
-    color: darkblue;
 }
 
 .fiveDay {
