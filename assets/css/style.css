@@ -46,14 +46,14 @@ body {
     width: 25%;
     height 100%;
     background-color: lightblue;
-    color: red;
 }
+
+
 .currentForecast {
     width: 75%;
     display: inline-block;
     margin-right: 20px;
     background-color: lightcyan;
-  
 }
 
 #pageTitle {
@@ -88,4 +88,8 @@ body {
 .placesList {
     font-size: larger;
     color: darkblue;
+}
+
+.fiveDay {
+    padding: 20px;
 }
