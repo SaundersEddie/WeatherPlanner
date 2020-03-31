@@ -39,13 +39,6 @@ $("#searchBtn").click(function (event) {
 
 // Our functions go here
 
-function checkUVRange() {
-  currentUV = parseInt($('#uvIndex').val());
-  // lets do a simple UV range check
-  if (currentUV > 2) {
-    $('#uvIndex').addClass("uvMed");
-  }
-}
 
 // Get current forecast and if successful our Lat/Long for UVI
 function getCurrentConditions(myCity) {
@@ -109,8 +102,39 @@ function getCurrentUVIndex(myLat, myLon) {
   })
     .then(function (response) {
       $('#uvIndex').text(response.value);
+      checkUVRange(response.value);
     })
 }
+
+
+function checkUVRange(currentUV) {
+  //currentUV = parseInt($('#uvIndex').val());
+  console.log("Calling Current UV Function: ", currentUV);
+  // lets do a simple UV range check
+
+  if (currentUV <= 2) {
+    console.log(currentUV);
+    $('#uvIndex').addClass("uvLow");
+  }
+
+  if (currentUV > 2 && currentUV < 5 ) {
+    console.log(currentUV);
+    $('#uvIndex').addClass("uvMed");
+  }
+
+  if (currentUV > 5 && currentUV < 8 ) {
+    console.log(currentUV);
+    $('#uvIndex').addClass("uvHigh");
+  }
+
+  if (currentUV > 8) {
+    console.log(currentUV);
+    $('#uvIndex').addClass("uvOMG");
+  }
+
+}
+
+
 // Take our supplied kelvin temp and convert to farenheit, if time allows we may do a selector for 
 // a centigrade option
 // Version 1 EXS 25th MArch 2020

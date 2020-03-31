@@ -12,7 +12,6 @@ body {
 }
 
 /* Our header area */
-
 #pageTitle {
     font-size: 48pt;
     font-style: bold;
@@ -22,7 +21,6 @@ body {
 }
 
 /* User Input Area */
-
 .search {
     margin-left: 30px;
     padding: 30px;
@@ -48,8 +46,6 @@ body {
     font-size: larger;
     color: darkblue;
 }
-
-
 
 /* Current Conditions Area */
 
@@ -78,11 +74,13 @@ body {
 }
 
 .uvOMG {
-    background-color: purple;
+    background-color: lightseagreen;
 }
 
 
 /* Our 5 day forecast area */
+/* Light Yellow just for tracking */
+
 .day {
     border-style: solid;
     border-width: 1px;
