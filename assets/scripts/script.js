@@ -39,6 +39,32 @@ $("#searchBtn").click(function (event) {
 
 // Our functions go here
 
+// Get 5 day forecast
+function get5Day(myCity) {
+  var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + myCity + "&appid=" + myAPIKey;
+  $.ajax({
+    url: fiveDayURL,
+    method: "GET"
+  })
+    .then(function (response) {
+      console.log(response);
+      var myForecastDate = 1;
+      for (var i = 0; i < 40; i += 8) {
+        myWeatherIcon = weatherIconURL + response.list[i].weather[0].icon + weatherIconURLEnd
+        myTemp = tempConversion(response.list[i].main.temp)
+        myDateID = "#day" + myForecastDate + "Date";
+        myIconID = "#day" + myForecastDate + "Icon";
+        myTempID = "#day" + myForecastDate + "Temp";
+        myHumidID = "#day" + myForecastDate + "Humid";
+        var myPulledDate = response.list[i].dt_txt.substring(0, 10);
+        $(myDateID).text(moment(myPulledDate).format("MM/DD/YYYY"));
+        $(myIconID).html(myWeatherIcon);
+        $(myTempID).text(myTemp);
+        $(myHumidID).text(response.list[i].main.humidity);
+        myForecastDate++;
+      }
+    });
+}
 
 // Get current forecast and if successful our Lat/Long for UVI
 function getCurrentConditions(myCity) {
@@ -57,42 +83,11 @@ function getCurrentConditions(myCity) {
       $('#temp').text(myTemp);
       $('#humidity').text(response.main.humidity);
       $('#windSpeed').text(response.wind.speed);
-
       // Pass our coords to get the UV
       getCurrentUVIndex(response.coord.lat, response.coord.lon)
+    });
+}
 
-    });
-}
-// Get 5 day forecast
-function get5Day(myCity) {
-  var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + myCity + "&appid=" + myAPIKey;
-  $.ajax({
-    url: fiveDayURL,
-    method: "GET"
-  })
-    .then(function (response) {
-      console.log(response);
-      var myForecastDate = 1;
-      for (var i = 0; i < 40; i += 8) {
-        myWeatherIcon = weatherIconURL + response.list[i].weather[0].icon + weatherIconURLEnd
-        myTemp = tempConversion(response.list[i].main.temp)
-        console.log("My Temp: ", myTemp);
-        myDateID = "#day" + myForecastDate + "Date";
-        myIconID = "#day" + myForecastDate + "Icon";
-        myTempID = "#day" + myForecastDate + "Temp";
-        myHumidID = "#day" + myForecastDate + "Humid";
-        var myPulledDate = response.list[i].dt_txt.substring(0, 10);
-        myMomentDate = moment(myPulledDate).format("MM/DD/YYYY");
-        console.log(myMomentDate);
-        console.log(myPulledDate);
-        $(myDateID).text(myMomentDate)
-        $(myIconID).html(myWeatherIcon);
-        $(myTempID).text(myTemp);
-        $(myHumidID).text(response.list[i].main.humidity);
-        myForecastDate++;
-      }
-    });
-}
 // Get current UV Index, this is called from within current forecast to get our UV index.
 function getCurrentUVIndex(myLat, myLon) {
   var UVIndexURL = "https://api.openweathermap.org/data/2.5/uvi?" + "appid=" + myAPIKey + "&lat=" + myLat + "&lon=" + myLon;
@@ -111,24 +106,24 @@ function checkUVRange(currentUV) {
   //currentUV = parseInt($('#uvIndex').val());
   console.log("Calling Current UV Function: ", currentUV);
   // lets do a simple UV range check
-
+  $('#uvIndex').removeClass();
   if (currentUV <= 2) {
-    console.log(currentUV);
+    console.log("Low: ", currentUV);
     $('#uvIndex').addClass("uvLow");
   }
 
-  if (currentUV > 2 && currentUV < 5 ) {
-    console.log(currentUV);
+  if (currentUV > 2 && currentUV < 5) {
+    console.log("Med: ",currentUV);
     $('#uvIndex').addClass("uvMed");
   }
 
-  if (currentUV > 5 && currentUV < 8 ) {
-    console.log(currentUV);
+  if (currentUV > 5 && currentUV < 8) {
+    console.log("High: ", currentUV);
     $('#uvIndex').addClass("uvHigh");
   }
 
   if (currentUV > 8) {
-    console.log(currentUV);
+    console.log("ZOMG!: ",currentUV);
     $('#uvIndex').addClass("uvOMG");
   }
 
