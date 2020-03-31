@@ -11,7 +11,7 @@ My search will then be saved to a list of no more than 8 locations
 ```
 
 ## Current Build Status
-Version 1.0 28th March 2020: Initial build
+Version 1.0 28th March 2020: Initial build<br/>
 Version 2.0 30th March 2020: Updated to materialize for interface
 
 ## Code
