@@ -113,7 +113,7 @@ function checkUVRange(currentUV) {
   }
 
   if (currentUV > 2 && currentUV < 5) {
-    console.log("Med: ",currentUV);
+    console.log("Med: ", currentUV);
     $('#uvIndex').addClass("uvMed");
   }
 
@@ -123,7 +123,7 @@ function checkUVRange(currentUV) {
   }
 
   if (currentUV > 8) {
-    console.log("ZOMG!: ",currentUV);
+    console.log("ZOMG!: ", currentUV);
     $('#uvIndex').addClass("uvOMG");
   }
 
@@ -151,11 +151,16 @@ function tempConversion(myKTemp) {
 function updateSearchedList() {
   console.log("Update our searched list");
   console.log(locationsSearched);
+  // Create our table list
   for (var i = 0; i < 8; i++) {
-    myPlace = "#place" + parseInt((i) + 1);
-    console.log(myPlace);
-    $(myPlace).text(locationsSearched[i]);
+    myLocationTable = "<tr><td>" + (locationsSearched[i]) + "</td></tr>";
+    console.log(myLocationTable);
+    myTable = $("table tbody");
+    myTable.append(myLocationTable);
   }
+  //$('#placesTable').append(myLocationTable);
+
+
 }
 
 // Initial Data Load
