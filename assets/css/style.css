@@ -36,6 +36,10 @@ body {
     color: lightblue;
 }
 
+#userSearch {
+    color: white;
+}
+
 .userInput {
     border-style: solid; /* Temporary just to visualize */
     border-radius: 15%;
@@ -53,7 +57,6 @@ body {
     display: inline-block;
     margin-right: 20px;
     color: lightblue;
-    /* background-color: lightcyan; */
 }
 
 #cityName p {
@@ -68,10 +71,12 @@ body {
 
 .uvMed {
     background-color: yellow;
+    color: black;
 }
 
 .uvHigh {
     background-color: red;
+    color: white;
 }
 
 .uvOMG {

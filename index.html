@@ -12,21 +12,16 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" />
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Planner</title>
-
 </head>
 
 <body>
     <div class="container">
         <header>
-
             <div class="w-100 p-3" id="pageTitle">
                 <h1>Weather Dashboard</h1>
             </div>
@@ -37,7 +32,7 @@
         <!-- We need a column here with a list for the prior users search -->
         <!-- Spaced out Dashboard items -->
         <div class="row">
-            <div class="search col s3 m3 l3">
+            <div class="search col s12 m6 l3">
                 <!-- This did have offset-l1-->
                 <section id="searchArea">
                     <div class="userInput">
@@ -58,14 +53,14 @@
 
 
 
-            <div class="currentForecast col s12 m8 l8">
+            <div class="currentForecast col s12 m6 l3">
                 <section id="mainDisplay">
                     <div id="weatherDetail"></div>
                     <div id="cityName"></div>
                     <div>
                         <p id="cityName"><span id="weatherIcon"></span></p>
                     </div>
-                    <hr><br>
+                    <br>
                     <div>
                         <p>Temperature <span id="temp"></span> &degF</p>
                     </div>
@@ -88,7 +83,7 @@
         <!-- These will likely be cards, this is just for test data -->
         <section id="fiveDay">
             <div class="row">
-                <div class="day day1 offset-6 col s12 m2 l1">
+                <div class="day day1 offset-l1 col s12 m6 l2">
                     <br>
                     <div id="day1Date"></div>
                     <div id="day1Icon"></div>
@@ -97,7 +92,7 @@
                     <br>
                 </div>
 
-                <div class="day day2 col s12 m2 l1">
+                <div class="day day2 col s12 m6 l2">
                     <br>
                     <div id="day2Date"></div>
                     <div id="day2Icon"></div>
@@ -106,7 +101,7 @@
                     <br>
                 </div>
 
-                <div class="day day3 col s12 m2 l1">
+                <div class="day day3 col s12 m6 l2">
                     <br>
                     <div id="day3Date"></div>
                     <div id="day3Icon"></div>
@@ -115,7 +110,7 @@
                     <br>
                 </div>
 
-                <div class="day day4 col s12 m2 l1">
+                <div class="day day4 col s12 m6 l2">
                     <br>
                     <div id="day4Date"></div>
                     <div id="day4Icon"></div>
@@ -124,7 +119,7 @@
                     <br>
                 </div>
 
-                <div class="day day5 col s12 m2 l1">
+                <div class="day day5 col s12 m6 l2">
                     <br>
                     <div id="day5Date"></div>
                     <div id="day5Icon"></div>

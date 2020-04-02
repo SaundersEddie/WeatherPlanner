@@ -60,7 +60,7 @@ function get5Day(myCity) {
         $(myDateID).text(moment(myPulledDate).format("MM/DD/YYYY"));
         $(myIconID).html(myWeatherIcon);
         $(myTempID).text(myTemp);
-        $(myHumidID).text(response.list[i].main.humidity);
+        $(myHumidID).text(response.list[i].main.humidity + " %");
         myForecastDate++;
       }
     });
@@ -81,8 +81,8 @@ function getCurrentConditions(myCity) {
       $('#cityName').html("<p>" + response.name + "</p>");
       $('#weatherIcon').html(myWeatherIcon);
       $('#temp').text(myTemp);
-      $('#humidity').text(response.main.humidity);
-      $('#windSpeed').text(response.wind.speed);
+      $('#humidity').text(response.main.humidity + " %");
+      $('#windSpeed').text(response.wind.speed + " mph");
       // Pass our coords to get the UV
       getCurrentUVIndex(response.coord.lat, response.coord.lon)
     });
@@ -126,9 +126,7 @@ function checkUVRange(currentUV) {
     console.log("ZOMG!: ", currentUV);
     $('#uvIndex').addClass("uvOMG");
   }
-
 }
-
 
 // Take our supplied kelvin temp and convert to farenheit, if time allows we may do a selector for 
 // a centigrade option
@@ -158,16 +156,10 @@ function updateSearchedList() {
     myLocationTable[i] = "<tr><td>" + locationsSearched[i] + "</td></tr>";
   }
   myLocationTableEnd = "</tbody></table>"
-  //console.log ("my Location Tablle:: ",myLocationTable);
   myTable = myLocationTableStart + myLocationTable + myLocationTableEnd;
-  //console.log ("My Table: ", myTable);
   if (locationsSearched[0] != "") {
-  $('#placesTable').html(myTable);
+    $('#placesTable').html(myTable);
   }
-  // myTable.append(myLocationTable);
-  // ).append(myLocationTable);
-
-
 }
 
 // Initial Data Load
