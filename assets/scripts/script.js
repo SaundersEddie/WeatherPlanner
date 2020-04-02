@@ -47,7 +47,7 @@ function get5Day(myCity) {
     method: "GET"
   })
     .then(function (response) {
-      console.log(response);
+      // console.log(response);
       var myForecastDate = 1;
       for (var i = 0; i < 40; i += 8) {
         myWeatherIcon = weatherIconURL + response.list[i].weather[0].icon + weatherIconURLEnd
@@ -101,29 +101,24 @@ function getCurrentUVIndex(myLat, myLon) {
     })
 }
 
-
 function checkUVRange(currentUV) {
   //currentUV = parseInt($('#uvIndex').val());
-  console.log("Calling Current UV Function: ", currentUV);
+  //console.log("Calling Current UV Function: ", currentUV);
   // lets do a simple UV range check
   $('#uvIndex').removeClass();
   if (currentUV <= 2) {
-    console.log("Low: ", currentUV);
     $('#uvIndex').addClass("uvLow");
   }
 
   if (currentUV > 2 && currentUV < 5) {
-    console.log("Med: ", currentUV);
     $('#uvIndex').addClass("uvMed");
   }
 
   if (currentUV > 5 && currentUV < 8) {
-    console.log("High: ", currentUV);
     $('#uvIndex').addClass("uvHigh");
   }
 
   if (currentUV > 8) {
-    console.log("ZOMG!: ", currentUV);
     $('#uvIndex').addClass("uvOMG");
   }
 }
@@ -139,27 +134,26 @@ function tempConversion(myKTemp) {
   if (useCentigrade === true) {
     convertedTemp = convertedCTemp.toFixed(2)
   } else { convertedTemp = convertedFTemp.toFixed(2) };
-
-  //console.log("My Converted Temp: ", convertedTemp);
   return convertedTemp;
 }
+
 // Update our list, things we need to improve are checks for letter case right now, the search will see
 // London and LONDON as two different entries
 // Version 1 EXS 25th March 2020
 function updateSearchedList() {
-  console.log("Update our searched list");
-  console.log(locationsSearched);
+  //console.log("Update our searched list");
+  //console.log(locationsSearched);
   // Create our table list
-  var myLocationTableStart = "<table><thead><tr><thSearched Locations</th></tr></thead></tbody>"
-  var myLocationTable = [];
+  var myLocationTableStart = "<table><thead><tr><th>Searched Locations</th></tr></thead><tbody>"
+  var myLocationTable = ["","","","","","","",""];
   for (var i = 0; i < 8; i++) {
     myLocationTable[i] = "<tr><td>" + locationsSearched[i] + "</td></tr>";
   }
   myLocationTableEnd = "</tbody></table>"
   myTable = myLocationTableStart + myLocationTable + myLocationTableEnd;
-  if (locationsSearched[0] != "") {
-    $('#placesTable').html(myTable);
-  }
+  //console.log (myTable);
+  $('#placesTable').html(myTable);
+
 }
 
 // Initial Data Load

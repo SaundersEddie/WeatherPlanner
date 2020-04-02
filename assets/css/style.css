@@ -57,6 +57,7 @@ body {
     display: inline-block;
     margin-right: 20px;
     color: lightblue;
+    line-height: 32px;
 }
 
 #cityName p {
