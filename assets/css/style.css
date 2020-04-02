@@ -17,7 +17,7 @@ body {
     font-style: bold;
     text-align: center;
     color:lightgray;
-    text-shadow: darkblue 1px 1px;
+    text-shadow: darkblue 2px 1px;
 }
 
 /* User Input Area */
@@ -28,12 +28,12 @@ body {
     float: left;
     width: 25%;
     height: 100%;
-    color: black;
-    background-color: lightblue;
+    color: lightblue;
+   /* background-color: lightblue; */
 }
 
 #user-input h4 {
-    color: black;
+    color: lightblue;
 }
 
 .userInput {
@@ -50,9 +50,10 @@ body {
 /* Current Conditions Area */
 
 .currentForecast {
-    /* display: inline-block; */
+    display: inline-block;
     margin-right: 20px;
-    background-color: lightcyan;
+    color: lightblue;
+    /* background-color: lightcyan; */
 }
 
 #cityName p {
@@ -97,4 +98,3 @@ body {
     padding: 20px;
 }
 
-/*Media Query for resolution > 700 */

@@ -26,22 +26,18 @@
 <body>
     <div class="container">
         <header>
-            <row>
-                <div class="w-100 p-3" id="pageTitle">
-                    <h1>Weather Dashboard</h1>
-                </div>
-            </row>
+
+            <div class="w-100 p-3" id="pageTitle">
+                <h1>Weather Dashboard</h1>
+            </div>
+
             <hr>
         </header>
-
-        <!-- Some Test Silliness here EXS-->
-
-
 
         <!-- We need a column here with a list for the prior users search -->
         <!-- Spaced out Dashboard items -->
         <div class="row">
-            <div class="search col s12 m8 l12">
+            <div class="search col s3 m3 l3">
                 <!-- This did have offset-l1-->
                 <section id="searchArea">
                     <div class="userInput">
@@ -52,13 +48,9 @@
                             <input type="text" id="userSearch">
                             <button class="btn-small blue darken-3" id="searchBtn"><i
                                     class="small material-icons">search</i></button>
-                            <!-- I of search for icon-->
-                            <!-- placeholder buttons, we'll likely use a table to create this-->
                             <br><br>
                             <!-- Add our table reference here-->
-                            <div id="placesTable">test</div>
-    
-                            <div id="cityList"> test city</div>
+                            <div id="placesTable"></div>
                         </form>
                     </div>
                 </section>
@@ -66,7 +58,7 @@
 
 
 
-            <div class="currentForecast col s12 m8 l12">
+            <div class="currentForecast col s12 m8 l8">
                 <section id="mainDisplay">
                     <div id="weatherDetail"></div>
                     <div id="cityName"></div>
@@ -94,9 +86,9 @@
         <hr>
 
         <!-- These will likely be cards, this is just for test data -->
-        <article id="fiveDay">
+        <section id="fiveDay">
             <div class="row">
-                <div class="day day1 col s12 m6 l2 offset-l1">
+                <div class="day day1 offset-6 col s12 m2 l1">
                     <br>
                     <div id="day1Date"></div>
                     <div id="day1Icon"></div>
@@ -105,7 +97,7 @@
                     <br>
                 </div>
 
-                <div class="day day2 col s12 m6 l2">
+                <div class="day day2 col s12 m2 l1">
                     <br>
                     <div id="day2Date"></div>
                     <div id="day2Icon"></div>
@@ -114,7 +106,7 @@
                     <br>
                 </div>
 
-                <div class="day day3 col s12 m6 l2">
+                <div class="day day3 col s12 m2 l1">
                     <br>
                     <div id="day3Date"></div>
                     <div id="day3Icon"></div>
@@ -123,7 +115,7 @@
                     <br>
                 </div>
 
-                <div class="day day4 col s12 m6 l2">
+                <div class="day day4 col s12 m2 l1">
                     <br>
                     <div id="day4Date"></div>
                     <div id="day4Icon"></div>
@@ -132,7 +124,7 @@
                     <br>
                 </div>
 
-                <div class="day day5 col s12 m6 l2">
+                <div class="day day5 col s12 m2 l1">
                     <br>
                     <div id="day5Date"></div>
                     <div id="day5Icon"></div>
@@ -142,7 +134,7 @@
                 </div>
 
             </div>
-        </article>
+        </section>
 
         <!-- End of container -->
     </div>
