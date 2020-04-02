@@ -142,7 +142,7 @@ function tempConversion(myKTemp) {
     convertedTemp = convertedCTemp.toFixed(2)
   } else { convertedTemp = convertedFTemp.toFixed(2) };
 
-  console.log("My Converted Temp: ", convertedTemp);
+  //console.log("My Converted Temp: ", convertedTemp);
   return convertedTemp;
 }
 // Update our list, things we need to improve are checks for letter case right now, the search will see
@@ -152,13 +152,20 @@ function updateSearchedList() {
   console.log("Update our searched list");
   console.log(locationsSearched);
   // Create our table list
+  var myLocationTableStart = "<table><thead><tr><thSearched Locations</th></tr></thead></tbody>"
+  var myLocationTable = [];
   for (var i = 0; i < 8; i++) {
-    myLocationTable = "<tr><td>" + (locationsSearched[i]) + "</td></tr>";
-    console.log(myLocationTable);
-    myTable = $("table tbody");
-    myTable.append(myLocationTable);
+    myLocationTable[i] = "<tr><td>" + locationsSearched[i] + "</td></tr>";
   }
-  //$('#placesTable').append(myLocationTable);
+  myLocationTableEnd = "</tbody></table>"
+  //console.log ("my Location Tablle:: ",myLocationTable);
+  myTable = myLocationTableStart + myLocationTable + myLocationTableEnd;
+  //console.log ("My Table: ", myTable);
+  if (locationsSearched[0] != "") {
+  $('#placesTable').html(myTable);
+  }
+  // myTable.append(myLocationTable);
+  // ).append(myLocationTable);
 
 
 }
