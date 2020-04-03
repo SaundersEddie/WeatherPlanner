@@ -141,19 +141,11 @@ function tempConversion(myKTemp) {
 // London and LONDON as two different entries
 // Version 1 EXS 25th March 2020
 function updateSearchedList() {
-  //console.log("Update our searched list");
-  //console.log(locationsSearched);
-  // Create our table list
-  var myLocationTableStart = "<table><thead><tr><th>Searched Locations</th></tr></thead><tbody>"
-  var myLocationTable = ["","","","","","","",""];
-  for (var i = 0; i < 8; i++) {
-    myLocationTable[i] = "<tr><td>" + locationsSearched[i] + "</td></tr>";
+  var myListHTML = ""
+  for (var i=0; i < 8; i++) {
+    myListHTML = myListHTML + "<br>" + locationsSearched[i];
   }
-  myLocationTableEnd = "</tbody></table>"
-  myTable = myLocationTableStart + myLocationTable + myLocationTableEnd;
-  //console.log (myTable);
-  $('#placesTable').html(myTable);
-
+  $('#placesTable').html(myListHTML);
 }
 
 // Initial Data Load
