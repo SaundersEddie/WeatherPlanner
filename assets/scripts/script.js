@@ -37,6 +37,12 @@ $("#searchBtn").click(function (event) {
   checkUVRange();
 });
 
+$('#userSearch').click(function () {
+  console.log ("User Search");
+  $('#userSearch').val("");
+
+});
+
 // Our functions go here
 
 // Get 5 day forecast
@@ -142,10 +148,11 @@ function tempConversion(myKTemp) {
 // Version 1 EXS 25th March 2020
 function updateSearchedList() {
   var myListHTML = ""
-  for (var i=0; i < 8; i++) {
+  for (var i = 0; i < 8; i++) {
     myListHTML = myListHTML + "<br>" + locationsSearched[i];
   }
-  $('#placesTable').html(myListHTML);
+  $('#placesList').html(myListHTML);
+  console.log (myListHTML);
 }
 
 // Initial Data Load
